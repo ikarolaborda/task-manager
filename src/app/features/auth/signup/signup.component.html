@@ -1,0 +1,81 @@
+<div class="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 flex items-center justify-center px-4">
+  <div class="w-full max-w-md">
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-secondary-900 mb-2">
+        Create Account
+      </h1>
+      <p class="text-secondary-600">
+        Join us to start managing your tasks
+      </p>
+    </div>
+    
+    <app-card>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+          <app-input
+            id="username"
+            label="Username"
+            placeholder="Choose a username"
+            formControlName="username"
+            [required]="true"
+            [errorMessage]="getFieldError('username')"
+            helperText="Must be 4-20 characters long"
+          ></app-input>
+        </div>
+        
+        <div class="mb-4">
+          <app-input
+            id="password"
+            label="Password"
+            type="password"
+            placeholder="Create a password"
+            formControlName="password"
+            [required]="true"
+            [errorMessage]="getFieldError('password')"
+            helperText="Must contain uppercase, lowercase, number/special character"
+          ></app-input>
+        </div>
+        
+        <div class="mb-6">
+          <app-input
+            id="confirmPassword"
+            label="Confirm Password"
+            type="password"
+            placeholder="Confirm your password"
+            formControlName="confirmPassword"
+            [required]="true"
+            [errorMessage]="getFieldError('confirmPassword')"
+          ></app-input>
+        </div>
+        
+        <div *ngIf="errorMessage" class="mb-6 bg-error-50 border border-error-200 rounded-lg p-3">
+          <p class="text-sm text-error-600">{{ errorMessage }}</p>
+        </div>
+        
+        <div *ngIf="successMessage" class="mb-6 bg-success-50 border border-success-200 rounded-lg p-3">
+          <p class="text-sm text-success-600">{{ successMessage }}</p>
+        </div>
+        
+        <div class="mb-6">
+          <app-button
+            type="submit"
+            [loading]="isLoading"
+            [disabled]="signupForm.invalid"
+            [fullWidth]="true"
+          >
+            Create Account
+          </app-button>
+        </div>
+      </form>
+      
+      <div class="text-center border-t border-secondary-200 pt-6">
+        <p class="text-sm text-secondary-600">
+          Already have an account?
+          <a routerLink="/auth/login" class="font-medium text-primary-600 hover:text-primary-500 ml-1">
+            Sign in
+          </a>
+        </p>
+      </div>
+    </app-card>
+  </div>
+</div> 

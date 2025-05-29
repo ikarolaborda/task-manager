@@ -1,0 +1,63 @@
+<div class="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 flex items-center justify-center px-4">
+  <div class="w-full max-w-md">
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-secondary-900 mb-2">
+        Welcome Back
+      </h1>
+      <p class="text-secondary-600">
+        Sign in to your account to continue
+      </p>
+    </div>
+    
+    <app-card>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+          <app-input
+            id="username"
+            label="Username"
+            placeholder="Enter your username"
+            formControlName="username"
+            [required]="true"
+            [errorMessage]="getFieldError('username')"
+          ></app-input>
+        </div>
+        
+        <div class="mb-6">
+          <app-input
+            id="password"
+            label="Password"
+            type="password"
+            placeholder="Enter your password"
+            formControlName="password"
+            [required]="true"
+            [errorMessage]="getFieldError('password')"
+          ></app-input>
+        </div>
+        
+        <div *ngIf="errorMessage" class="mb-6 bg-error-50 border border-error-200 rounded-lg p-3">
+          <p class="text-sm text-error-600">{{ errorMessage }}</p>
+        </div>
+        
+        <div class="mb-6">
+          <app-button
+            type="submit"
+            [loading]="isLoading"
+            [disabled]="loginForm.invalid"
+            [fullWidth]="true"
+          >
+            Sign In
+          </app-button>
+        </div>
+      </form>
+      
+      <div class="text-center border-t border-secondary-200 pt-6">
+        <p class="text-sm text-secondary-600">
+          Don't have an account?
+          <a routerLink="/auth/signup" class="font-medium text-primary-600 hover:text-primary-500 ml-1">
+            Sign up
+          </a>
+        </p>
+      </div>
+    </app-card>
+  </div>
+</div> 
