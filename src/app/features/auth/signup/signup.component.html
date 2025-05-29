@@ -32,8 +32,12 @@
             formControlName="password"
             [required]="true"
             [errorMessage]="getFieldError('password')"
-            helperText="Must contain uppercase, lowercase, number/special character"
           ></app-input>
+          
+          <!-- Password Strength Meter -->
+          <app-password-strength 
+            [password]="currentPassword"
+          ></app-password-strength>
         </div>
         
         <div class="mb-6">

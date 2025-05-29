@@ -6,6 +6,7 @@ import { AuthService } from '../../../services/auth.service';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { InputComponent } from '../../../shared/components/input/input.component';
 import { CardComponent } from '../../../shared/components/card/card.component';
+import { PasswordStrengthComponent } from '../../../shared/components/password-strength/password-strength.component';
 
 @Component({
   selector: 'app-signup',
@@ -16,7 +17,8 @@ import { CardComponent } from '../../../shared/components/card/card.component';
     RouterModule,
     ButtonComponent,
     InputComponent,
-    CardComponent
+    CardComponent,
+    PasswordStrengthComponent
   ],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
@@ -46,6 +48,10 @@ export class SignupComponent {
       ]],
       confirmPassword: ['', Validators.required]
     }, { validators: this.passwordMatchValidator });
+  }
+  
+  get currentPassword(): string {
+    return this.signupForm.get('password')?.value || '';
   }
   
   onSubmit(): void {
